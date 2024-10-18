@@ -3,21 +3,17 @@ import java.util.Scanner;
 import java.util.Stack;
 
 public class RiwayatBrowser {
-    // Stack untuk menyimpan riwayat browser
     private Stack<String> riwayat;
 
-    // Constructor
     public RiwayatBrowser() {
         riwayat = new Stack<>();
     }
 
-    // Fungsi untuk menambahkan website ke dalam riwayat
     public void browse(String website) {
         riwayat.push(website);
         System.out.println("Mengunjungi: " + website);
     }
 
-    // Fungsi untuk kembali ke website sebelumnya (menghapus riwayat terakhir)
     public void back() {
         if (riwayat.isEmpty()) {
             System.out.println("Tidak ada website dalam riwayat.");
@@ -32,7 +28,6 @@ public class RiwayatBrowser {
         }
     }
 
-    // Fungsi untuk menampilkan semua riwayat yang diurutkan dari yang paling baru
     public void view() {
         if (riwayat.isEmpty()) {
             System.out.println("Riwayat kosong.");
@@ -49,7 +44,6 @@ public class RiwayatBrowser {
         Scanner scanner = new Scanner(System.in);
         String perintah;
 
-        // Menu utama untuk memilih fungsi
         while (true) {
             System.out.println("\nMasukkan perintah (browse, back, view, exit): ");
             perintah = scanner.nextLine();
@@ -77,3 +71,4 @@ public class RiwayatBrowser {
         scanner.close();
     }
 }
+
