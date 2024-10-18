@@ -1,0 +1,79 @@
+package tugaspm;
+import java.util.Scanner;
+import java.util.Stack;
+
+public class RiwayatBrowser {
+    // Stack untuk menyimpan riwayat browser
+    private Stack<String> riwayat;
+
+    // Constructor
+    public RiwayatBrowser() {
+        riwayat = new Stack<>();
+    }
+
+    // Fungsi untuk menambahkan website ke dalam riwayat
+    public void browse(String website) {
+        riwayat.push(website);
+        System.out.println("Mengunjungi: " + website);
+    }
+
+    // Fungsi untuk kembali ke website sebelumnya (menghapus riwayat terakhir)
+    public void back() {
+        if (riwayat.isEmpty()) {
+            System.out.println("Tidak ada website dalam riwayat.");
+        } else {
+            String websiteTerakhir = riwayat.pop();
+            System.out.println("Kembali dari: " + websiteTerakhir);
+            if (!riwayat.isEmpty()) {
+                System.out.println("Sekarang melihat: " + riwayat.peek());
+            } else {
+                System.out.println("Riwayat sekarang kosong.");
+            }
+        }
+    }
+
+    // Fungsi untuk menampilkan semua riwayat yang diurutkan dari yang paling baru
+    public void view() {
+        if (riwayat.isEmpty()) {
+            System.out.println("Riwayat kosong.");
+        } else {
+            System.out.println("Riwayat Browser (paling baru):");
+            for (int i = riwayat.size() - 1; i >= 0; i--) {
+                System.out.println(riwayat.get(i));
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        RiwayatBrowser browser = new RiwayatBrowser();
+        Scanner scanner = new Scanner(System.in);
+        String perintah;
+
+        // Menu utama untuk memilih fungsi
+        while (true) {
+            System.out.println("\nMasukkan perintah (browse, back, view, exit): ");
+            perintah = scanner.nextLine();
+
+            if (perintah.equals("browse")) {
+                System.out.print("Masukkan URL website: ");
+                String website = scanner.nextLine();
+                browser.browse(website);
+
+            } else if (perintah.equals("back")) {
+                browser.back();
+
+            } else if (perintah.equals("view")) {
+                browser.view();
+
+            } else if (perintah.equals("exit")) {
+                System.out.println("Keluar dari simulasi riwayat browser.");
+                break;
+
+            } else {
+                System.out.println("Perintah tidak valid. Silakan masukkan browse, back, view, atau exit.");
+            }
+        }
+
+        scanner.close();
+    }
+}
